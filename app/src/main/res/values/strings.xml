@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_auto_forward">Auto Forward</string>
+    <string name="action_go_to">Go To</string>
+    <string name="action_bookmark">Bookmark</string>
+    <string name="app_name">KanaDrill</string>
+    <string name="action_settings">Settings</string>
+    <string name="drill_button">Drill</string>
+    <string name="katakana_text">Katakana</string>
+    <string name="hiragana_text">Hiragana</string>
+    <string name="train_button">Training</string>
+    <string name="hiragana_draw_button">Hiragana Draw</string>
+    <string name="katakana_draw_button">Katakana Draw</string>
+    <string name="table_button">Table</string>
+    <string name="kanji_training_button">Jōyō Kanji</string>
+    <string name="wrong_kana">Wrong Kana</string>
+    <string name="okay">Okay</string>
+    <string name="question_goto">Which number?</string>
+    <string name="input_goto">Go</string>
+    <string name="input_cancel">Cancel</string>
+    <string name="title_activity_table">TableActivity</string>
+
+</resources>

@@ -1,0 +1,81 @@
+<resources>
+
+    <!-- Strings related to Settings -->
+
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="katakana_title">Katakana too</string>
+    <string name="katakana_summary">After hiragana show katakana</string>
+
+    <string name="kana_title">Included Characters</string>
+    <string-array name="kana_options">
+        <item>First 5 (a to o)</item>
+        <item>First 10 (a to ko)</item>
+        <item>First 15 (a to so)</item>
+        <item>First 20 (a to to)</item>
+        <item>First 25 (a to no)</item>
+        <item>First 30 (a to ho)</item>
+        <item>First 35 (a to mo)</item>
+        <item>First 38 (a to yo)</item>
+        <item>First 46 (a to n)</item>
+        <item>Plus (ga to po)</item>
+        <item>Plus (kya to ryo)</item>
+        <item>Plus (gya to je)</item>
+    </string-array>
+    <string-array name="kana_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string name="order_title">Display Order</string>
+    <string-array name="order_options">
+        <item>Randomly</item>
+        <item>Alphabetically</item>
+    </string-array>
+    <string-array name="order_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="theme_title">Theme</string>
+    <string-array name="theme_options" translatable="false">
+        <item>Holo Light</item>
+        <item>Holo Dark</item>
+    </string-array>
+    <string-array name="theme_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="autoforward_title">Auto Forward Speed</string>
+    <string-array name="autoforward_options" translatable="false">
+        <item>1 Second</item>
+        <item>2 Seconds</item>
+        <item>3 Seconds</item>
+        <item>4 Seconds</item>
+        <item>5 Seconds</item>
+        <item>6 Seconds</item>
+    </string-array>
+    <string-array name="autoforward_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+</resources>

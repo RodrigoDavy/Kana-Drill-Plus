@@ -1,0 +1,39 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/autoforward_options"
+        android:entryValues="@array/autoforward_values"
+        android:key="autoforward_speed"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/autoforward_title"/>
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/kana_options"
+        android:entryValues="@array/kana_values"
+        android:key="kana_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/kana_title"/>
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/order_options"
+        android:entryValues="@array/order_values"
+        android:key="order_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/order_title"/>
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/theme_options"
+        android:entryValues="@array/theme_values"
+        android:key="theme_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/theme_title"/>
+
+</PreferenceScreen>

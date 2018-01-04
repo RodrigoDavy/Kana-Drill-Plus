@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MaterialLight" parent="@android:style/Theme.Material.Light">
+        <item name="android:colorPrimary">#F44336</item>
+        <item name="android:colorPrimaryDark">#D32F2F</item>
+        <item name="android:navigationBarColor">#D32F2F</item>
+    </style>
+
+    <style name="MaterialDark" parent="@android:style/Theme.Material">
+        <item name="android:colorPrimary">#F44336</item>
+        <item name="android:colorPrimaryDark">#D32F2F</item>
+        <item name="android:navigationBarColor">#D32F2F</item>
+    </style>
+</resources>

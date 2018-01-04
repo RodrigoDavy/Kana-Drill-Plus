@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              android:orientation="vertical">
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:text="@string/hiragana_text"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
+    <LinearLayout
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/buttonHiraganaTraining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/train_button"
+        android:onClick="onClickButtonHiraganaTraining"/>
+
+    <Button
+        android:id="@+id/buttonHiraganaDrill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/drill_button"
+        android:onClick="onClickButtonHiraganaDrill"/>
+
+    <Button
+        android:id="@+id/buttonHiraganaDraw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/table_button"
+        android:onClick="onClickButtonHiraganaTable"/>
+
+</LinearLayout>
+    <TextView
+
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/katakana_text"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/buttonKatakanaTraining"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/train_button"
+            android:onClick="onClickButtonKatakanaTraining"/>
+
+        <Button
+            android:id="@+id/buttonKatakanaDrill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/drill_button"
+            android:onClick="onClickButtonKatakanaDrill"/>
+
+        <Button
+            android:id="@+id/buttonKatakanaDraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/table_button"
+            android:onClick="onClickButtonKatakanaTable"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/buttonKanjiTraining"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/kanji_training_button"
+        android:onClick="onClickButtonKanjiTraining"/>
+
+</LinearLayout>
