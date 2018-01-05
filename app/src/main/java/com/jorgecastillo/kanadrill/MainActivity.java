@@ -15,94 +15,105 @@ import java.util.Scanner;
 
 public class MainActivity extends EveryActivity {
 
-  private SharedPreferences myPreferences;
-  private Context myContext;
-  private String textToast;
+    private SharedPreferences myPreferences;
+    private Context myContext;
+    private String textToast;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-    myContext = getApplicationContext();
-    myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        myContext = getApplicationContext();
+        myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-    if (!myPreferences.getBoolean("setup_true", false)) {
+        if (!myPreferences.getBoolean("setup_true", false)) {
 
-      SharedPreferences.Editor editMyPreferences = myPreferences.edit();
-      editMyPreferences.putBoolean("setup_true", true);
-      editMyPreferences.commit();
+            SharedPreferences.Editor editMyPreferences = myPreferences.edit();
+            editMyPreferences.putBoolean("setup_true", true);
+            editMyPreferences.commit();
 
-      textToast = "Set Preferences";
-      Toast.makeText(myContext, textToast, Toast.LENGTH_SHORT).show();
+            textToast = "Set Preferences";
+            Toast.makeText(myContext, textToast, Toast.LENGTH_SHORT).show();
 
-      Intent intent = new Intent(this, SettingsActivity.class);
-      startActivity(intent);
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
 
+        }
+
+        try {
+            FileInputStream input = openFileInput("took_you");
+            String took_you = new Scanner(input).useDelimiter("\\Z").next();
+            input.close();
+            Toast.makeText(getApplicationContext(), "It took you " + took_you + " seconds!", Toast.LENGTH_LONG)
+                    .show();
+            File mFile = new File(getFilesDir(), "took_you");
+            mFile.delete();
+        } catch (FileNotFoundException fnfe) {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    try {
-      FileInputStream input = openFileInput("took_you");
-      String took_you = new Scanner(input).useDelimiter("\\Z").next();
-      input.close();
-      Toast.makeText(getApplicationContext(), "It took you " + took_you + " seconds!", Toast.LENGTH_LONG)
-          .show();
-      File mFile = new File(getFilesDir(), "took_you");
-      mFile.delete();
-    } catch (FileNotFoundException fnfe) {} catch (Exception e) {
-      e.printStackTrace();
+    public void onClickButtonHiraganaDrill(View view) {
+
+        Intent intent = new Intent(this, HiraganaDrillActivity.class);
+        startActivity(intent);
     }
-  }
 
-  public void onClickButtonHiraganaDrill(View view) {
+    public void onClickButtonKatakanaDrill(View view) {
 
-    Intent intent = new Intent(this, HiraganaDrillActivity.class);
-    startActivity(intent);
-  }
+        Intent intent = new Intent(this, KatakanaDrillActivity.class);
+        startActivity(intent);
+    }
 
-  public void onClickButtonKatakanaDrill(View view) {
+    public void onClickButtonHiraganaTraining(View view) {
 
-    Intent intent = new Intent(this, KatakanaDrillActivity.class);
-    startActivity(intent);
-  }
+        Intent intent = new Intent(this, HiraganaTrainingActivity.class);
+        startActivity(intent);
+    }
 
-  public void onClickButtonHiraganaTraining(View view) {
+    public void onClickButtonKatakanaTraining(View view) {
 
-    Intent intent = new Intent(this, HiraganaTrainingActivity.class);
-    startActivity(intent);
-  }
+        Intent intent = new Intent(this, KatakanaTrainingActivity.class);
+        startActivity(intent);
+    }
 
-  public void onClickButtonKatakanaTraining(View view) {
-
-    Intent intent = new Intent(this, KatakanaTrainingActivity.class);
-    startActivity(intent);
-  }
-
-    public void onClickButtonHiraganaTable(View view){
+    public void onClickButtonHiraganaTable(View view) {
         Intent intent = new Intent(this, HiraganaTableActivity.class);
         startActivity(intent);
     }
 
-    public void onClickButtonKatakanaTable(View view){
+    public void onClickButtonKatakanaTable(View view) {
         Intent intent = new Intent(this, KatakanaTableActivity.class);
         startActivity(intent);
     }
 
+    public void onClickButtonHiraganaDraw(View view) {
 
+        Intent intent = new Intent(this, HiraganaDrawActivity.class);
+        startActivity(intent);
+    }
 
-  public void onClickButtonKanjiTraining(View view) {
-    Intent intent = new Intent(this, KanjiTrainingActivity.class);
-    startActivity(intent);
-  }
+    public void onClickButtonKatakanaDraw(View view) {
 
-  @Override
-  public void onRestart() {
-    super.onRestart();
+        Intent intent = new Intent(this, KatakanaDrawActivity.class);
+        startActivity(intent);
+    }
 
-    //This is to change theme
-    finish();
-    Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.jorgecastillo.kanadrill");
-    startActivity(launchIntent);
-  }
+    public void onClickButtonKanjiTraining(View view) {
+        Intent intent = new Intent(this, KanjiTrainingActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+
+        //This is to change theme
+        finish();
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.jorgecastillo.kanadrill");
+        startActivity(launchIntent);
+    }
 
 }

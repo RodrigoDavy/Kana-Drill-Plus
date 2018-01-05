@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/gameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="80sp"
+        android:clickable="true"
+        tools:text="い"
+        android:onClick="onClickGameText"/>
+
+    <com.jorgecastillo.kanadrill.SimpleDrawingView
+        android:id="@+id/drawing_view"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:background="@drawable/rectangle_border" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/drawing_view"
+        android:paddingTop="32dp">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:onClick="onClickButton1"
+            android:text="@string/clear"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:onClick="onClickButton2"
+            android:text="@string/kana"/>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:onClick="onClickButton3"
+            android:text="@string/done"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

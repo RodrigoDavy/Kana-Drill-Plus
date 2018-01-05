@@ -25,49 +25,61 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HiraganaDrillActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HiraganaTrainingActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".KatakanaDrillActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".KatakanaTrainingActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".KanjiTrainingActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HiraganaTableActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".KatakanaTableActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HiraganaDrawActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".KatakanaDrawActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
