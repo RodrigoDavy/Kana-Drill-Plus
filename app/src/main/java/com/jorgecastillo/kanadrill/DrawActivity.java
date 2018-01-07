@@ -1,11 +1,10 @@
 package com.jorgecastillo.kanadrill;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,12 +26,30 @@ public class DrawActivity extends EveryActivity {
 
     protected String[] meaning;
     protected String[] japanese;
+    protected int[] sounds;
     protected long startTime, tookyou;
+
+    private MediaPlayer mediaPlayer = null;
+    private AudioManager audioManager = null;
+    private AudioManager.OnAudioFocusChangeListener afChangeListener = afChangeListener = afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        public void onAudioFocusChange(int focusChange) {
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                mediaPlayer.pause();
+                mediaPlayer.seekTo(0);
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                releaseMediaPlayer();
+            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                mediaPlayer.start();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw);
+
+        audioManager = (AudioManager) this.getSystemService(this.AUDIO_SERVICE);
 
         gameText = (TextView) findViewById(R.id.gameText);
         button1 = (Button) findViewById(R.id.button1);
@@ -58,6 +75,21 @@ public class DrawActivity extends EveryActivity {
 
         }
         startTime = System.currentTimeMillis();
+    }
+
+    public void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+    private void releaseMediaPlayer() {
+        if(mediaPlayer!=null) {
+            mediaPlayer.release();
+
+            mediaPlayer = null;
+
+            audioManager.abandonAudioFocus(afChangeListener);
+        }
     }
 
     public void setArrays() {}
@@ -87,10 +119,19 @@ public class DrawActivity extends EveryActivity {
     }
 
     public void onClickGameText(View view) {
-        if (gameText.getText().equals(meaning[order[count]])) {
-            gameText.setText(japanese[order[count]]);
-        } else {
-            gameText.setText(meaning[order[count]]);
+        if(order[count]<sounds.length) {
+            releaseMediaPlayer();
+
+            mediaPlayer = MediaPlayer.create(this, sounds[order[count]]);
+            audioManager.requestAudioFocus(afChangeListener,AudioManager.STREAM_MUSIC,AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+            mediaPlayer.start();
+
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    releaseMediaPlayer();
+                }
+            });
         }
     }
 
