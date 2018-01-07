@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.FileOutputStream;
@@ -74,6 +75,18 @@ public class DrawActivity extends EveryActivity {
             setButtons();
 
         }
+
+        //need to do this otherwise the volume icon gets invisible depending on the theme
+        switch(myPreferences.getString("theme_list","0")) {
+            case "2":
+            case "4":
+                ImageView img = (ImageView) findViewById(R.id.volume_icon);
+                img.setImageResource(R.drawable.ic_volume_up_white_24dp);
+                break;
+            default:
+                break;
+        }
+
         startTime = System.currentTimeMillis();
     }
 

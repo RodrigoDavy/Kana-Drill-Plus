@@ -6,16 +6,27 @@
     android:padding="@dimen/activity_horizontal_margin"
     android:gravity="center_horizontal"
     android:orientation="vertical">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:onClick="onClickGameText">
     <TextView
         android:id="@+id/gameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minEms="1"
+        android:gravity="center"
         android:text=""
         android:textSize="80sp"
-        android:clickable="true"
-        tools:text="い"
-        android:onClick="onClickGameText"/>
+        tools:text="ku" />
+    <ImageView
+        android:id="@+id/volume_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_volume_up_black_24dp"/>
+</LinearLayout>
+
 
     <com.jorgecastillo.kanadrill.SimpleDrawingView
         android:id="@+id/drawing_view"
