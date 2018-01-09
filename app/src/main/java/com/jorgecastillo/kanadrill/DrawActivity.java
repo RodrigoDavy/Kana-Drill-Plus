@@ -79,6 +79,7 @@ public class DrawActivity extends EveryActivity {
         startTime = System.currentTimeMillis();
     }
 
+    @Override
     public void onStop() {
         super.onStop();
         kanaAudioPlayer.releaseMediaPlayer();

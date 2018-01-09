@@ -15,16 +15,21 @@ public class TrainingActivity extends EveryActivity {
   protected int upto;
   protected int[] order;
 
+  private KanaAudioPlayer kanaAudioPlayer = null;
   private SharedPreferences myPreferences;
   protected Resources myResources;
 
   protected String[] meaning;
   protected String[] japanese;
 
+  protected int[] sounds;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_training);
+
+    kanaAudioPlayer = new KanaAudioPlayer(this);
 
     kanaText = (TextView) findViewById(R.id.kanaText);
     romanjiText = (TextView) findViewById(R.id.romanjiText);
@@ -55,6 +60,12 @@ public class TrainingActivity extends EveryActivity {
 
   }
 
+  @Override
+  public void onStop() {
+    super.onStop();
+    kanaAudioPlayer.releaseMediaPlayer();
+  }
+
   public void setArrays() {}
 
   public void setButtons() {
@@ -65,6 +76,7 @@ public class TrainingActivity extends EveryActivity {
     }
     kanaText.setText(japanese[order[count]]);
     romanjiText.setText(meaning[order[count]]);
+    kanaAudioPlayer.play(this,sounds[order[count]]);
   }
 
   public void setButtonsBack() {
