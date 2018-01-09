@@ -30,27 +30,14 @@ public class DrawActivity extends EveryActivity {
     protected int[] sounds;
     protected long startTime, tookyou;
 
-    private MediaPlayer mediaPlayer = null;
-    private AudioManager audioManager = null;
-    private AudioManager.OnAudioFocusChangeListener afChangeListener = afChangeListener = afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
-        public void onAudioFocusChange(int focusChange) {
-            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                mediaPlayer.pause();
-                mediaPlayer.seekTo(0);
-            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-                releaseMediaPlayer();
-            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-                mediaPlayer.start();
-            }
-        }
-    };
+    protected KanaAudioPlayer kanaAudioPlayer = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw);
 
-        audioManager = (AudioManager) this.getSystemService(this.AUDIO_SERVICE);
+        kanaAudioPlayer = new KanaAudioPlayer(this);
 
         gameText = (TextView) findViewById(R.id.gameText);
         button1 = (Button) findViewById(R.id.button1);
@@ -72,6 +59,8 @@ public class DrawActivity extends EveryActivity {
 
             CommonCode.orderRandom(upto, order);
 
+            kanaAudioPlayer.play(this,sounds[order[count]]);
+
             setButtons();
 
         }
@@ -92,18 +81,10 @@ public class DrawActivity extends EveryActivity {
 
     public void onStop() {
         super.onStop();
-        releaseMediaPlayer();
+        kanaAudioPlayer.releaseMediaPlayer();
     }
 
-    private void releaseMediaPlayer() {
-        if(mediaPlayer!=null) {
-            mediaPlayer.release();
 
-            mediaPlayer = null;
-
-            audioManager.abandonAudioFocus(afChangeListener);
-        }
-    }
 
     public void setArrays() {}
 
@@ -129,22 +110,12 @@ public class DrawActivity extends EveryActivity {
         setButtons();
         simpleDrawingView.erase();
         button2.setText(R.string.kana);
+        kanaAudioPlayer.play(this,sounds[order[count]]);
     }
 
     public void onClickGameText(View view) {
         if(order[count]<sounds.length) {
-            releaseMediaPlayer();
-
-            mediaPlayer = MediaPlayer.create(this, sounds[order[count]]);
-            audioManager.requestAudioFocus(afChangeListener,AudioManager.STREAM_MUSIC,AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-            mediaPlayer.start();
-
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    releaseMediaPlayer();
-                }
-            });
+            kanaAudioPlayer.play(this,sounds[order[count]]);
         }
     }
 
