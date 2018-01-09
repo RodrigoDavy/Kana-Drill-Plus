@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class TableActivity extends Activity {
+public abstract class TableActivity extends Activity {
 
     protected TextView textViewTabla;
     protected Resources myResources;
@@ -53,7 +53,7 @@ public class TableActivity extends Activity {
 
     }
 
-    public void setArrays() {}
+    abstract public void setArrays();
 
     public void fillTable() {
         int n = meaning.length;

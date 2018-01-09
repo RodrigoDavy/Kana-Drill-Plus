@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.io.FileOutputStream;
 
-public class DrawActivity extends EveryActivity {
+public abstract class DrawActivity extends EveryActivity {
 
     protected TextView gameText;
     protected Button button1, button2, button3;
@@ -87,7 +87,7 @@ public class DrawActivity extends EveryActivity {
 
 
 
-    public void setArrays() {}
+    abstract public void setArrays();
 
     //Clears the canvas
     public void onClickButton1(View view) {

@@ -9,140 +9,140 @@ import android.widget.TextView;
 
 import java.io.FileOutputStream;
 
-public class DrillActivity extends EveryActivity {
+public abstract class DrillActivity extends EveryActivity {
 
-  protected TextView gameText;
-  protected Button button1, button2, button3, button4;
+    protected TextView gameText;
+    protected Button button1, button2, button3, button4;
 
-  protected int count;
-  protected int upto;
+    protected int count;
+    protected int upto;
 
-  protected int[] order;
-  private int[] buttonValues = new int[4];
-  protected Resources myResources;
+    protected int[] order;
+    private int[] buttonValues = new int[4];
+    protected Resources myResources;
 
-  protected String[] meaning;
-  protected String[] japanese;
-  protected long startTime, tookyou;
+    protected String[] meaning;
+    protected String[] japanese;
+    protected long startTime, tookyou;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_game);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_game);
 
-    gameText = (TextView) findViewById(R.id.gameText);
-    button1 = (Button) findViewById(R.id.button1);
-    button2 = (Button) findViewById(R.id.button2);
-    button3 = (Button) findViewById(R.id.button3);
-    button4 = (Button) findViewById(R.id.button4);
+        gameText = (TextView) findViewById(R.id.gameText);
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
 
-    myResources = getResources();
+        myResources = getResources();
 
-    setArrays();
+        setArrays();
 
-    if (myPreferences.getBoolean("setup_true", false)) {
+        if (myPreferences.getBoolean("setup_true", false)) {
 
-      int kana_list = Integer.parseInt(myPreferences.getString("kana_list", "1"));
+            int kana_list = Integer.parseInt(myPreferences.getString("kana_list", "1"));
 
-      upto = CommonCode.setUpto(kana_list);
+            upto = CommonCode.setUpto(kana_list);
 
-      order = new int[upto];
+            order = new int[upto];
 
-      CommonCode.orderRandom(upto, order);
+            CommonCode.orderRandom(upto, order);
 
-      setButtons();
+            setButtons();
 
-    }
-    startTime = System.currentTimeMillis();
-  }
-
-  public void setArrays() {}
-
-  public void onClickButton1(View view) { everyButton(0); }
-
-  public void onClickButton2(View view) { everyButton(1); }
-
-  public void onClickButton3(View view) { everyButton(2); }
-
-  public void onClickButton4(View view) { everyButton(3); }
-
-  public void onClickGameText(View view) {
-    wrongKana(order[count]);
-    count++;
-    setButtons();
-  }
-
-  public void everyButton(int value) {
-
-    if (order[count] == buttonValues[value]) {
-    } else {
-      wrongKana(order[count]);
-    }
-
-    count++;
-    setButtons();
-  }
-
-  public void wrongKana(int count) {
-    KanaDrillDialog kdd = new KanaDrillDialog();
-    kdd.setTitle(getString(R.string.wrong_kana));
-    kdd.setValues(japanese[count], " = " + meaning[count]);
-    kdd.show(getFragmentManager(), "Kana Dialog");
-  }
-
-  private void setButtons() {
-
-    if (count >= upto) {
-      tookyou = System.currentTimeMillis() - startTime;
-      String filename = "took_you";
-      String took_you = "" + (tookyou / 1000);
-      FileOutputStream outputStream;
-      Context mContext = getApplicationContext();
-      try {
-        outputStream = mContext.openFileOutput(filename, Context.MODE_PRIVATE);
-        outputStream.write(took_you.getBytes());
-        outputStream.close();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-      System.exit(0);
-    }
-
-    int[] used_values = new int[4];
-    int filled = CommonCode.randomInt(4, -1);
-    used_values[0] = order[count];
-    buttonValues[filled] = used_values[0];
-    int uvct = 1;
-    int skip = -1;
-    switch(order[count]){
-      case 52:
-        skip = 57;
-        break;
-      case 57:
-        skip = 52;
-        break;
-      default:
-        break;
-    }
-
-    for (int i = 0; i < 4; i++) {
-      if (i == filled) continue;
-      int val = CommonCode.randomInt(upto, skip);
-      for (int j = 0; j < uvct; j++) {
-        while (val == used_values[j]) {
-          val = CommonCode.randomInt(upto, skip);
-          j = 0;
         }
-      }
-      used_values[uvct++] = val;
-      buttonValues[i] = val;
+        startTime = System.currentTimeMillis();
     }
 
-    gameText.setText(japanese[order[count]]);
-    button1.setText(meaning[buttonValues[0]]);
-    button2.setText(meaning[buttonValues[1]]);
-    button3.setText(meaning[buttonValues[2]]);
-    button4.setText(meaning[buttonValues[3]]);
+    abstract public void setArrays();
 
-  }
+    public void onClickButton1(View view) { everyButton(0); }
+
+    public void onClickButton2(View view) { everyButton(1); }
+
+    public void onClickButton3(View view) { everyButton(2); }
+
+    public void onClickButton4(View view) { everyButton(3); }
+
+    public void onClickGameText(View view) {
+        wrongKana(order[count]);
+        count++;
+        setButtons();
+    }
+
+    public void everyButton(int value) {
+
+        if (order[count] == buttonValues[value]) {
+        } else {
+            wrongKana(order[count]);
+        }
+
+        count++;
+        setButtons();
+    }
+
+    public void wrongKana(int count) {
+        KanaDrillDialog kdd = new KanaDrillDialog();
+        kdd.setTitle(getString(R.string.wrong_kana));
+        kdd.setValues(japanese[count], " = " + meaning[count]);
+        kdd.show(getFragmentManager(), "Kana Dialog");
+    }
+
+    private void setButtons() {
+
+        if (count >= upto) {
+            tookyou = System.currentTimeMillis() - startTime;
+            String filename = "took_you";
+            String took_you = "" + (tookyou / 1000);
+            FileOutputStream outputStream;
+            Context mContext = getApplicationContext();
+            try {
+                outputStream = mContext.openFileOutput(filename, Context.MODE_PRIVATE);
+                outputStream.write(took_you.getBytes());
+                outputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.exit(0);
+        }
+
+        int[] used_values = new int[4];
+        int filled = CommonCode.randomInt(4, -1);
+        used_values[0] = order[count];
+        buttonValues[filled] = used_values[0];
+        int uvct = 1;
+        int skip = -1;
+        switch(order[count]){
+            case 52:
+                skip = 57;
+                break;
+            case 57:
+                skip = 52;
+                break;
+            default:
+                break;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            if (i == filled) continue;
+            int val = CommonCode.randomInt(upto, skip);
+            for (int j = 0; j < uvct; j++) {
+                while (val == used_values[j]) {
+                    val = CommonCode.randomInt(upto, skip);
+                    j = 0;
+                }
+            }
+            used_values[uvct++] = val;
+            buttonValues[i] = val;
+        }
+
+        gameText.setText(japanese[order[count]]);
+        button1.setText(meaning[buttonValues[0]]);
+        button2.setText(meaning[buttonValues[1]]);
+        button3.setText(meaning[buttonValues[2]]);
+        button4.setText(meaning[buttonValues[3]]);
+
+    }
 }

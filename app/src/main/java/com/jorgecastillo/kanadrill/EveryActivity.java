@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 
-public class EveryActivity extends Activity implements GestureDetector.OnGestureListener {
+public abstract class EveryActivity extends Activity implements GestureDetector.OnGestureListener {
 
   protected GestureDetector mDetector;
   protected SharedPreferences myPreferences;

@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
-public class TrainingActivity extends EveryActivity {
+public abstract class TrainingActivity extends EveryActivity {
 
   protected TextView kanaText, romanjiText;
 
@@ -66,7 +66,7 @@ public class TrainingActivity extends EveryActivity {
     kanaAudioPlayer.releaseMediaPlayer();
   }
 
-  public void setArrays() {}
+  abstract public void setArrays();
 
   public void setButtons() {
 
