@@ -13,6 +13,7 @@
     <string name="draw_button">Draw</string>
     <string name="table_button">Table</string>
     <string name="kanji_training_button">Jōyō Kanji</string>
+    <string name="correct_kana">Correct Kana</string>
     <string name="wrong_kana">Wrong Kana</string>
     <string name="okay">Okay</string>
     <string name="question_goto">Which number?</string>
@@ -23,5 +24,7 @@
     <string name="kana">KANA</string>
     <string name="done">DONE</string>
     <string name="romaji">ROMAJI</string>
+    <string name="reveal">REVEAL</string>
+    <string name="hide">HIDE</string>
 
 </resources>

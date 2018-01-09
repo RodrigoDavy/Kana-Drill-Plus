@@ -2,8 +2,6 @@ package com.jorgecastillo.kanadrill;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -85,7 +83,12 @@ public abstract class DrawActivity extends EveryActivity {
         kanaAudioPlayer.releaseMediaPlayer();
     }
 
-
+   public void showKana() {
+        KanaDrillDialog kdd = new KanaDrillDialog();
+        kdd.setTitle(getString(R.string.wrong_kana));
+        kdd.setValues(japanese[count], " = " + meaning[count]);
+        kdd.show(getFragmentManager(), "Kana Dialog");
+    }
 
     abstract public void setArrays();
 
@@ -98,20 +101,22 @@ public abstract class DrawActivity extends EveryActivity {
     public void onClickButton2(View view) {
         if (gameText.getText().equals(meaning[order[count]])) {
             gameText.setText(japanese[order[count]]);
-            button2.setText(R.string.romaji);
+            button2.setText(R.string.hide);
         } else {
             gameText.setText(meaning[order[count]]);
-            button2.setText(R.string.kana);
+            button2.setText(R.string.reveal);
         }
     }
 
     //Goes to next kana
     public void onClickButton3(View view) {
+        showKana();
         count++;
         setButtons();
         simpleDrawingView.erase();
-        button2.setText(R.string.kana);
+        button2.setText(R.string.reveal);
         kanaAudioPlayer.play(this,sounds[order[count]]);
+
     }
 
     public void onClickGameText(View view) {
