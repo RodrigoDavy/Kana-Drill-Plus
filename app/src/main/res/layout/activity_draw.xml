@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:onClick="onClickButton2"
-            android:text="@string/kana"/>
+            android:text="@string/reveal"/>
 
         <Button
             android:id="@+id/button3"

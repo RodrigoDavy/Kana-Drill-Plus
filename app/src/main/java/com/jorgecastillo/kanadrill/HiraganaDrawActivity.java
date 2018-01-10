@@ -1,12 +1,7 @@
 package com.jorgecastillo.kanadrill;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.preference.PreferenceManager;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.widget.TextView;
 
 public class HiraganaDrawActivity extends DrawActivity {
 

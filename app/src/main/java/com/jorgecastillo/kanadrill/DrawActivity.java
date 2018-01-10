@@ -1,6 +1,7 @@
 package com.jorgecastillo.kanadrill;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 
 import java.io.FileOutputStream;
 
-public abstract class DrawActivity extends EveryActivity {
+public abstract class DrawActivity extends EveryActivity implements DialogInterface.OnDismissListener {
 
     protected TextView gameText;
     protected Button button1, button2, button3;
@@ -83,13 +84,6 @@ public abstract class DrawActivity extends EveryActivity {
         kanaAudioPlayer.releaseMediaPlayer();
     }
 
-   public void showKana() {
-        KanaDrillDialog kdd = new KanaDrillDialog();
-        kdd.setTitle(getString(R.string.wrong_kana));
-        kdd.setValues(japanese[count], " = " + meaning[count]);
-        kdd.show(getFragmentManager(), "Kana Dialog");
-    }
-
     abstract public void setArrays();
 
     //Clears the canvas
@@ -110,13 +104,20 @@ public abstract class DrawActivity extends EveryActivity {
 
     //Goes to next kana
     public void onClickButton3(View view) {
-        showKana();
+        KanaDrillDialog kdd = new KanaDrillDialog();
+        kdd.setTitle(getString(R.string.correct_kana));
+        kdd.setValues(japanese[count], " = " + meaning[count]);
+        kdd.show(getFragmentManager(), "Kana Dialog");
+
+    }
+
+    @Override
+    public void onDismiss(final DialogInterface dialog) {
         count++;
         setButtons();
         simpleDrawingView.erase();
         button2.setText(R.string.reveal);
-        kanaAudioPlayer.play(this,sounds[order[count]]);
-
+        kanaAudioPlayer.play(DrawActivity.this,sounds[order[count]]);
     }
 
     public void onClickGameText(View view) {

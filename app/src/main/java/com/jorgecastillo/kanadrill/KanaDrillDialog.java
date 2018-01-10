@@ -1,5 +1,6 @@
 package com.jorgecastillo.kanadrill;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -27,6 +28,7 @@ public class KanaDrillDialog extends DialogFragment {
         builder.setTitle(title).setMessage(first + second)
                 .setNeutralButton(R.string.okay, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+
                     }
                 });
         AlertDialog dialog = builder.show();
@@ -35,5 +37,14 @@ public class KanaDrillDialog extends DialogFragment {
         messageText.setGravity(Gravity.CENTER);
 
         return dialog;
+    }
+
+    @Override
+    public void onDismiss(final DialogInterface dialog) {
+        super.onDismiss(dialog);
+        final Activity activity = getActivity();
+        if (activity instanceof DialogInterface.OnDismissListener) {
+            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
+        }
     }
 }
