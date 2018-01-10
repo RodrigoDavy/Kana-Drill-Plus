@@ -106,7 +106,7 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
     public void onClickButton3(View view) {
         KanaDrillDialog kdd = new KanaDrillDialog();
         kdd.setTitle(getString(R.string.correct_kana));
-        kdd.setValues(japanese[count], " = " + meaning[count]);
+        kdd.setValues(japanese[order[count]], " = " + meaning[order[count]]);
         kdd.show(getFragmentManager(), "Kana Dialog");
 
     }

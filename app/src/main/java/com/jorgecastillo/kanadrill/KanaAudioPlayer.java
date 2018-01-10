@@ -5,10 +5,6 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 
-/**
- * Created by rodrigo on 09/01/18.
- */
-
 public class KanaAudioPlayer {
     private MediaPlayer mediaPlayer = null;
     private AudioManager audioManager = null;
