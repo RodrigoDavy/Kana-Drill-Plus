@@ -1,6 +1,7 @@
 package com.jorgecastillo.kanadrill;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 
 import java.io.FileOutputStream;
 
-public abstract class DrillActivity extends EveryActivity {
+public abstract class DrillActivity extends EveryActivity implements DialogInterface.OnDismissListener{
 
     protected TextView gameText;
     protected Button button1, button2, button3, button4;
@@ -75,10 +76,15 @@ public abstract class DrillActivity extends EveryActivity {
     public void everyButton(int value) {
 
         if (order[count] == buttonValues[value]) {
+            count++;
+            setButtons();
         } else {
             wrongKana(order[count]);
         }
+    }
 
+    @Override
+    public void onDismiss(final DialogInterface dialog) {
         count++;
         setButtons();
     }
