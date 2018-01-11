@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.FileOutputStream;
+import java.util.Random;
 
 public abstract class DrillActivity extends EveryActivity implements DialogInterface.OnDismissListener{
 
@@ -57,7 +58,7 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
         startTime = System.currentTimeMillis();
     }
 
-    abstract public void setArrays();
+    public abstract void setArrays();
 
     public void onClickButton1(View view) { everyButton(0); }
 
@@ -144,11 +145,18 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
             buttonValues[i] = val;
         }
 
-        gameText.setText(japanese[order[count]]);
-        button1.setText(meaning[buttonValues[0]]);
-        button2.setText(meaning[buttonValues[1]]);
-        button3.setText(meaning[buttonValues[2]]);
-        button4.setText(meaning[buttonValues[3]]);
-
+        if((new Random()).nextBoolean()) {
+            gameText.setText(japanese[order[count]]);
+            button1.setText(meaning[buttonValues[0]]);
+            button2.setText(meaning[buttonValues[1]]);
+            button3.setText(meaning[buttonValues[2]]);
+            button4.setText(meaning[buttonValues[3]]);
+        }else{
+            gameText.setText(meaning[order[count]]);
+            button1.setText(japanese[buttonValues[0]]);
+            button2.setText(japanese[buttonValues[1]]);
+            button3.setText(japanese[buttonValues[2]]);
+            button4.setText(japanese[buttonValues[3]]);
+        }
     }
 }
