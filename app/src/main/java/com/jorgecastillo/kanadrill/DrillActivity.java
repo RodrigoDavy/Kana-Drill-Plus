@@ -27,6 +27,8 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
     protected String[] japanese;
     protected long startTime, tookyou;
 
+    protected Random random = new Random();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,7 +147,7 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
             buttonValues[i] = val;
         }
 
-        if((new Random()).nextBoolean()) {
+        if(random.nextBoolean()) {
             gameText.setText(japanese[order[count]]);
             button1.setText(meaning[buttonValues[0]]);
             button2.setText(meaning[buttonValues[1]]);
