@@ -8,16 +8,14 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class MainActivity extends EveryActivity {
 
     private SharedPreferences myPreferences;
     private Context myContext;
     private String textToast;
+
+    /** Global variable which activities set after completion. */
+    static int incorrect = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +39,9 @@ public class MainActivity extends EveryActivity {
 
         }
 
-        try {
-            FileInputStream input = openFileInput("took_you");
-            String took_you = new Scanner(input).useDelimiter("\\Z").next();
-            input.close();
-            Toast.makeText(getApplicationContext(), "It took you " + took_you + " seconds!", Toast.LENGTH_LONG)
-                    .show();
-            File mFile = new File(getFilesDir(), "took_you");
-            mFile.delete();
-        } catch (FileNotFoundException fnfe) {
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (incorrect != -1) {
+            Toast.makeText(getApplicationContext(), incorrect + " incorrect", Toast.LENGTH_LONG).show();
+            incorrect = -1;
         }
     }
 

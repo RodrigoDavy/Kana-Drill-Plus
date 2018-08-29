@@ -1,6 +1,5 @@
 package com.jorgecastillo.kanadrill;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.FileOutputStream;
 import java.util.Random;
 
 public abstract class DrillActivity extends EveryActivity implements DialogInterface.OnDismissListener{
@@ -18,6 +16,7 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
 
     protected int count;
     protected int upto;
+    protected int incorrect;
 
     protected int[] order;
     private int[] buttonValues = new int[4];
@@ -25,7 +24,6 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
 
     protected String[] meaning;
     protected String[] japanese;
-    protected long startTime, tookyou;
 
     protected Random random = new Random();
 
@@ -57,7 +55,6 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
             setButtons();
 
         }
-        startTime = System.currentTimeMillis();
     }
 
     public abstract void setArrays();
@@ -82,6 +79,7 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
             count++;
             setButtons();
         } else {
+            incorrect++;
             wrongKana(order[count]);
         }
     }
@@ -102,19 +100,9 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
     private void setButtons() {
 
         if (count >= upto) {
-            tookyou = System.currentTimeMillis() - startTime;
-            String filename = "took_you";
-            String took_you = "" + (tookyou / 1000);
-            FileOutputStream outputStream;
-            Context mContext = getApplicationContext();
-            try {
-                outputStream = mContext.openFileOutput(filename, Context.MODE_PRIVATE);
-                outputStream.write(took_you.getBytes());
-                outputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            System.exit(0);
+            MainActivity.incorrect = incorrect;
+            finish();
+            return;
         }
 
         int[] used_values = new int[4];

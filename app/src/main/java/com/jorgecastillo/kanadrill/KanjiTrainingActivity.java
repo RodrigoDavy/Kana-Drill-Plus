@@ -84,7 +84,8 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
       count = 830;
     }
     if (count >= upto) {
-      System.exit(0);
+      finish();
+      return;
     }
 
     setButtons();

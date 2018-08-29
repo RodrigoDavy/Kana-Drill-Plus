@@ -19,6 +19,7 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
 
     protected int count;
     protected int upto;
+    protected int incorrect;
 
     protected int[] order;
     private int[] buttonValues = new int[4];
@@ -27,7 +28,6 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
     protected String[] meaning;
     protected String[] japanese;
     protected int[] sounds;
-    protected long startTime, tookyou;
 
     protected KanaAudioPlayer kanaAudioPlayer = null;
 
@@ -74,8 +74,6 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
             default:
                 break;
         }
-
-        startTime = System.currentTimeMillis();
     }
 
     @Override
@@ -129,19 +127,9 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
     private void setButtons() {
 
         if (count >= upto) {
-            tookyou = System.currentTimeMillis() - startTime;
-            String filename = "took_you";
-            String took_you = "" + (tookyou / 1000);
-            FileOutputStream outputStream;
-            Context mContext = getApplicationContext();
-            try {
-                outputStream = mContext.openFileOutput(filename, Context.MODE_PRIVATE);
-                outputStream.write(took_you.getBytes());
-                outputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            System.exit(0);
+            MainActivity.incorrect = incorrect;
+            finish();
+            return;
         }
 
         int[] used_values = new int[4];
