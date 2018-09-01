@@ -1,6 +1,6 @@
-KanaDrill - Android App
-=======================
+KanaDrillPlus - Android App
+===========================
 
 Learn the kanas on the go!
 
-[KanaDrill - Google Play](https://play.google.com/store/apps/details?id=com.jorgecastillo.kanadrill)
+KanaDrillPlus is a fork of Jorge Castillo's [KanaDrill](https://github.com/SweetLion/KanaDrill).
