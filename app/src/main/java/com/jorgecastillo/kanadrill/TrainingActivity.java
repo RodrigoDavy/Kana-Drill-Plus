@@ -72,7 +72,8 @@ public abstract class TrainingActivity extends EveryActivity {
 
     count++;
     if (count >= upto) {
-      System.exit(0);
+      finish();
+      return;
     }
     kanaText.setText(japanese[order[count]]);
     romanjiText.setText(meaning[order[count]]);
