@@ -60,7 +60,7 @@ public abstract class TableActivity extends Activity {
         String textTable = "";
         for(int i = 0; i < n ; i++){
             textTable += "" + meaning[i] + japanese[i] + "  ";
-            if ( (i + 1) % 5 == 0) {
+            if (meaning[i].endsWith("o") || meaning[i].equals("n")) {
                 textTable += "\n\n";
             }
         }
