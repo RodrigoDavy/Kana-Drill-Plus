@@ -23,8 +23,17 @@
         android:paddingTop="50dp">
 
         <Button
+            android:id="@+id/button1"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClickButton1"
+            android:text=""
+            android:textSize="36sp"
+            tools:text="い"/>
+
+        <Button
             android:id="@+id/button2"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:onClick="onClickButton2"
             android:text=""
@@ -32,17 +41,8 @@
             tools:text="い"/>
 
         <Button
-            android:id="@+id/button4"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:onClick="onClickButton4"
-            android:text=""
-            android:textSize="36sp"
-            tools:text="い"/>
-
-        <Button
             android:id="@+id/button3"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:onClick="onClickButton3"
             android:text=""
@@ -50,10 +50,10 @@
             tools:text="い"/>
 
         <Button
-            android:id="@+id/button1"
-            android:layout_width="70dp"
+            android:id="@+id/button4"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:onClick="onClickButton1"
+            android:onClick="onClickButton4"
             android:text=""
             android:textSize="36sp"
             tools:text="い"/>
