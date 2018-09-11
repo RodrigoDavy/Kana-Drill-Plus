@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -100,7 +101,7 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
     private void setButtons() {
 
         if (count >= upto) {
-            MainActivity.incorrect = incorrect;
+            Toast.makeText(getApplicationContext(), incorrect + " incorrect", Toast.LENGTH_LONG).show();
             finish();
             return;
         }

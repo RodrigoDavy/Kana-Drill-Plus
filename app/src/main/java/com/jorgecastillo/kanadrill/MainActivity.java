@@ -14,9 +14,6 @@ public class MainActivity extends EveryActivity {
     private Context myContext;
     private String textToast;
 
-    /** Global variable which activities set after completion. */
-    static int incorrect = -1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +34,6 @@ public class MainActivity extends EveryActivity {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
 
-        }
-
-        if (incorrect != -1) {
-            Toast.makeText(getApplicationContext(), incorrect + " incorrect", Toast.LENGTH_LONG).show();
-            incorrect = -1;
         }
     }
 
