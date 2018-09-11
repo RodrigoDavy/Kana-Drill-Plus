@@ -115,7 +115,9 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
         setButtons();
         simpleDrawingView.erase();
         button2.setText(R.string.reveal);
-        kanaAudioPlayer.play(DrawActivity.this,sounds[order[count]]);
+        if (count < order.length) {
+            kanaAudioPlayer.play(DrawActivity.this, sounds[order[count]]);
+        }
     }
 
     public void onClickGameText(View view) {
