@@ -9,16 +9,17 @@ import android.preference.PreferenceManager;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.webkit.WebView;
 
 public abstract class TableActivity extends Activity {
 
-    protected TextView textViewTabla;
+    protected WebView kanaTable;
     protected Resources myResources;
     protected String[] meaning;
     protected String[] japanese;
     protected SharedPreferences myPreferences;
     protected int theme_list;
+    private boolean darkTheme = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +31,26 @@ public abstract class TableActivity extends Activity {
         switch (theme_list){
             case 1:
                 setTheme(R.style.HoloLight);
+                darkTheme = false;
                 break;
             case 2:
                 setTheme(R.style.HoloDark);
+                darkTheme = true;
                 break;
             case 3:
                 setTheme(R.style.MaterialLight);
+                darkTheme = false;
                 break;
             case 4:
                 setTheme(R.style.MaterialDark);
+                darkTheme = true;
                 break;
             default:
                 break;
         }
 
         setContentView(R.layout.activity_table);
-        textViewTabla = (TextView) findViewById(R.id.textViewTabla);
+        kanaTable = (WebView) findViewById(R.id.kanaTable);
 
         myResources = getResources();
         setArrays();
@@ -56,16 +61,43 @@ public abstract class TableActivity extends Activity {
     abstract public void setArrays();
 
     public void fillTable() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("<html>");
+        builder.append("<head>");
+        builder.append("<style type=\"text/css\">");
+        if (darkTheme) {
+            builder.append("body{color: white; background-color: black;}");
+        }
+        // size font based on the screen width
+        builder.append("table{font-size: 5vw}");
+        builder.append("td{padding: 1vw}");
+        builder.append("</style>");
+        builder.append("</head>");
+        builder.append("<body>");
+        builder.append("<table>");
+        builder.append("<tr>");
         int n = meaning.length;
-        String textTable = "";
         for(int i = 0; i < n ; i++){
-            textTable += "" + meaning[i] + japanese[i] + "  ";
+            if (meaning[i].equals("kya")) {
+                builder.append("</tr>");
+                builder.append("</table>");
+                builder.append("<table>");
+                builder.append("<tr>");
+            }
+            builder.append("<td>")
+                   .append(japanese[i])
+                   .append("</td><td>")
+                   .append(meaning[i])
+                   .append("</td>");
             if (meaning[i].endsWith("o") || meaning[i].equals("n")) {
-                textTable += "\n\n";
+                builder.append("</tr><tr>");
             }
         }
-        textViewTabla.setText(textTable);
-        textViewTabla.setMovementMethod(new ScrollingMovementMethod());
+        builder.append("</tr>");
+        builder.append("</table>");
+        builder.append("</body>");
+        builder.append("</html>");
+        kanaTable.loadDataWithBaseURL(null, builder.toString(), "text/html", "utf-8", null);
     }
 
     @Override

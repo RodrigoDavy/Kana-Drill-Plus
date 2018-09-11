@@ -10,10 +10,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.jorgecastillo.kanadrill.TableActivity">
 
-    <TextView
-        android:scrollbars="vertical"
+    <WebView
+        android:id="@+id/kanaTable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/textViewTabla"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+        android:scrollbars="vertical" />
 </RelativeLayout>
