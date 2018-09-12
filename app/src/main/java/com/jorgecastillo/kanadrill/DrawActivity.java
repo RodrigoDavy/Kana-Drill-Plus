@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileOutputStream;
 
@@ -129,7 +130,7 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
     private void setButtons() {
 
         if (count >= upto) {
-            MainActivity.incorrect = incorrect;
+            Toast.makeText(getApplicationContext(), incorrect + " incorrect", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
