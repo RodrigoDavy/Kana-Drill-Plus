@@ -1,10 +1,11 @@
 package com.jorgecastillo.kanadrill;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.app.Activity;
 import android.preference.PreferenceManager;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
@@ -51,6 +52,7 @@ public abstract class TableActivity extends Activity {
 
         setContentView(R.layout.activity_table);
         kanaTable = (WebView) findViewById(R.id.kanaTable);
+        kanaTable.setBackgroundColor(Color.TRANSPARENT);
 
         myResources = getResources();
         setArrays();
@@ -66,7 +68,7 @@ public abstract class TableActivity extends Activity {
         builder.append("<head>");
         builder.append("<style type=\"text/css\">");
         if (darkTheme) {
-            builder.append("body{color: white; background-color: black;}");
+            builder.append("body{color: white}");
         }
         // size font based on the screen width
         builder.append("table{font-size: 5vw}");
