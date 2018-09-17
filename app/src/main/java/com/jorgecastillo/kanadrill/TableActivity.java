@@ -89,6 +89,11 @@ public abstract class TableActivity extends Activity {
                    .append("</td><td>")
                    .append(meaning[i])
                    .append("</td>");
+            if (meaning[i].equals("ya") || meaning[i].equals("yu")) {
+                builder.append("<td colspan=\"2\"></td>");
+            } else if (meaning[i].equals("wa")) {
+                builder.append("<td colspan=\"6\"></td>");
+            }
             if (meaning[i].endsWith("o") || meaning[i].equals("n")) {
                 builder.append("</tr><tr>");
             }
