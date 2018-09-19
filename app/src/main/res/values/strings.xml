@@ -11,6 +11,7 @@
     <string name="hiragana_text">Hiragana</string>
     <string name="train_button">Training</string>
     <string name="draw_button">Draw</string>
+    <string name="vocabulary_button">Vocabulary</string>
     <string name="table_button">Table</string>
     <string name="kanji_training_button">Jōyō Kanji</string>
     <string name="correct_kana">Correct Kana</string>
