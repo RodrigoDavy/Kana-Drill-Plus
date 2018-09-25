@@ -28,6 +28,7 @@ public class GoToDialog extends DialogFragment {
 
     builder.setTitle(title).setMessage(R.string.question_goto)
         .setPositiveButton(R.string.input_goto, new DialogInterface.OnClickListener() {
+          @Override
           public void onClick(DialogInterface dialog, int id) {
             int number;
             try {
@@ -40,6 +41,7 @@ public class GoToDialog extends DialogFragment {
           }
         })
         .setNegativeButton(R.string.input_cancel, new DialogInterface.OnClickListener() {
+          @Override
           public void onClick(DialogInterface dialog, int id) {
             // User cancelled the dialog
           }

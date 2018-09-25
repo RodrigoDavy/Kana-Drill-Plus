@@ -9,6 +9,7 @@ public class KanaAudioPlayer {
     private MediaPlayer mediaPlayer = null;
     private AudioManager audioManager = null;
     private AudioManager.OnAudioFocusChangeListener afChangeListener = afChangeListener = afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
         public void onAudioFocusChange(int focusChange) {
             if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
                 mediaPlayer.pause();

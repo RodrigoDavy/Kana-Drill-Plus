@@ -17,6 +17,7 @@ import java.util.Scanner;
 
 public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.Callbacks {
 
+  @Override
   public void goToKanji(int position) {
 
     if (position > 0 && position < 2137) {
@@ -77,6 +78,7 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
 
   }
 
+  @Override
   public void rightLeftFling() {
 
     count++;
@@ -99,6 +101,7 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
     getActionBar().setTitle("" + (count + 1));
   }
 
+  @Override
   public void leftRightFling() {
 
     count--;
@@ -154,9 +157,11 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
         if (autoforward) {
           final Activity mactivity = this;
           new Thread(new Runnable() {
+            @Override
             public void run() {
               while (autoforward) {
                 mactivity.runOnUiThread(new Runnable() {
+                  @Override
                   public void run() {
                     count++;
                     if (count == 829) {
