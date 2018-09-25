@@ -10,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public abstract class DrawActivity extends EveryActivity implements DialogInterface.OnDismissListener {
 
@@ -23,8 +26,7 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
     protected int revealedCount;
     protected boolean revealed;
 
-    protected int[] order;
-    private int[] buttonValues = new int[4];
+    protected List<Integer> order;
     protected Resources myResources;
 
     protected String[] meaning;
@@ -51,16 +53,13 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
         setArrays();
 
         if (myPreferences.getBoolean("setup_true", false)) {
+            Collection<String> kanaGroups = myPreferences.getStringSet("kana_groups", Collections.<String>emptySet());
 
-            int kana_list = Integer.parseInt(myPreferences.getString("kana_list", "1"));
+            order = CommonCode.getKanas(kanaGroups);
 
-            upto = CommonCode.setUpto(kana_list);
+            Collections.shuffle(order);
 
-            order = new int[upto];
-
-            CommonCode.orderRandom(upto, order);
-
-            kanaAudioPlayer.play(this,sounds[order[count]]);
+            kanaAudioPlayer.play(this, sounds[order.get(count)]);
 
             setButtons();
 
@@ -93,12 +92,12 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
 
     //Switch between romaji and kana
     public void onClickButton2(View view) {
-        if (gameText.getText().equals(meaning[order[count]])) {
-            gameText.setText(japanese[order[count]]);
+        if (gameText.getText().equals(meaning[order.get(count)])) {
+            gameText.setText(japanese[order.get(count)]);
             button2.setText(R.string.hide);
             revealed = true;
         } else {
-            gameText.setText(meaning[order[count]]);
+            gameText.setText(meaning[order.get(count)]);
             button2.setText(R.string.reveal);
         }
     }
@@ -107,7 +106,7 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
     public void onClickButton3(View view) {
         KanaDrillDialog kdd = new KanaDrillDialog();
         kdd.setTitle(getString(R.string.correct_kana));
-        kdd.setValues(japanese[order[count]], " = " + meaning[order[count]]);
+        kdd.setValues(japanese[order.get(count)], " = " + meaning[order.get(count)]);
         kdd.show(getFragmentManager(), "Kana Dialog");
 
     }
@@ -122,56 +121,26 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
         setButtons();
         simpleDrawingView.erase();
         button2.setText(R.string.reveal);
-        if (count < order.length) {
-            kanaAudioPlayer.play(DrawActivity.this, sounds[order[count]]);
+        if (count < order.size()) {
+            kanaAudioPlayer.play(DrawActivity.this, sounds[order.get(count)]);
         }
     }
 
     public void onClickGameText(View view) {
-        if(order[count]<sounds.length) {
-            kanaAudioPlayer.play(this,sounds[order[count]]);
+        if(order.get(count) < sounds.length) {
+            kanaAudioPlayer.play(this, sounds[order.get(count)]);
         }
     }
 
     private void setButtons() {
 
-        if (count >= upto) {
-            Toast.makeText(getApplicationContext(), revealedCount + " revealed", Toast.LENGTH_LONG).show();
+        if (count >= order.size()) {
+            Toast.makeText(getApplicationContext(), incorrect + " incorrect", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
 
-        int[] used_values = new int[4];
-        int filled = CommonCode.randomInt(4, -1);
-        used_values[0] = order[count];
-        buttonValues[filled] = used_values[0];
-        int uvct = 1;
-        int skip = -1;
-        switch(order[count]){
-            case 52:
-                skip = 57;
-                break;
-            case 57:
-                skip = 52;
-                break;
-            default:
-                break;
-        }
-
-        for (int i = 0; i < 4; i++) {
-            if (i == filled) continue;
-            int val = CommonCode.randomInt(upto, skip);
-            for (int j = 0; j < uvct; j++) {
-                while (val == used_values[j]) {
-                    val = CommonCode.randomInt(upto, skip);
-                    j = 0;
-                }
-            }
-            used_values[uvct++] = val;
-            buttonValues[i] = val;
-        }
-
-        gameText.setText(meaning[order[count]]);
+        gameText.setText(meaning[order.get(count)]);
 
     }
 }

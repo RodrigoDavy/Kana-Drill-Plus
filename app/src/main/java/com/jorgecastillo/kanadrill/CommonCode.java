@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.StringWriter;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class CommonCode {
 
@@ -20,90 +22,58 @@ public class CommonCode {
 
   }
 
-  private static boolean intExists(int[] vector, int element, int length) {
-
-    for (int i = 0; i < length; i++) {
-      if (vector[i] == element) {
-        return true;
-      }
+  private static void addRange(Collection<Integer> collection, int start, int stop) {
+    for (int i = start; i < stop; ++i) {
+      collection.add(i);
     }
-
-    return false;
-
   }
 
-  public static void orderRandom(int upto, int order[]) {
-
-    Arrays.fill(order, -1);
-
-    for (int i = 0; i < upto; ) {
-      int val = randomInt(upto, -1);
-      if (!intExists(order, val, upto)) {
-        order[i] = val;
-        i++;
-      }
-    }
-
-  }
-
-  public static int setUpto(int option) {
-
-    int upto = 0;
-
-    switch (option) {
+  public static List<Integer> getKanas(Collection<String> kanaGroups) {
+    List<Integer> kanas = new ArrayList<Integer>();
+    for (String kanaGroup : kanaGroups) {
+      int group = Integer.parseInt(kanaGroup);
+      switch (Integer.parseInt(kanaGroup)) {
       case 1:
-        upto = 5;
+        addRange(kanas, 0, 5);
         break;
       case 2:
-        upto = 10;
+        addRange(kanas, 5, 10);
         break;
       case 3:
-        upto = 15;
+        addRange(kanas, 10, 15);
         break;
       case 4:
-        upto = 20;
+        addRange(kanas, 15, 20);
         break;
       case 5:
-        upto = 25;
+        addRange(kanas, 20, 25);
         break;
       case 6:
-        upto = 30;
+        addRange(kanas, 25, 30);
         break;
       case 7:
-        upto = 35;
+        addRange(kanas, 30, 35);
         break;
       case 8:
-        upto = 38;
+        addRange(kanas, 35, 38);
         break;
       case 9:
-        upto = 46;
+        addRange(kanas, 38, 46);
         break;
       case 10:
-        upto = 71;
+        addRange(kanas, 46, 71);
         break;
       case 11:
-        upto = 92;
+        addRange(kanas, 71, 92);
         break;
       case 12:
-        upto = 107;
+        addRange(kanas, 92, 107);
         break;
       default:
-        break;
+        throw new IllegalStateException("unexpected group: " + group);
+      }
     }
-
-    return upto;
-
-  }
-
-  public static int randomInt(int upto, int skip) {
-
-    int number;
-
-    do {
-      number = (int) Math.floor(Math.random() * upto);
-    } while (number == skip);
-
-    return number;
+    return kanas;
   }
 
   public static void intArrayToFile(Context myContext, String filename, int[] array) {

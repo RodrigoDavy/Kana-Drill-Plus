@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public abstract class DrillActivity extends EveryActivity implements DialogInterface.OnDismissListener{
@@ -16,11 +20,10 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
     protected Button button1, button2, button3, button4;
 
     protected int count;
-    protected int upto;
     protected int incorrect;
 
-    protected int[] order;
-    private int[] buttonValues = new int[4];
+    protected List<Integer> order;
+    private final List<Integer> buttonValues = new ArrayList<Integer>();
     protected Resources myResources;
 
     protected String[] meaning;
@@ -44,14 +47,11 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
         setArrays();
 
         if (myPreferences.getBoolean("setup_true", false)) {
+            Collection<String> kanaGroups = myPreferences.getStringSet("kana_groups", Collections.<String>emptySet());
 
-            int kana_list = Integer.parseInt(myPreferences.getString("kana_list", "1"));
+            order = CommonCode.getKanas(kanaGroups);
 
-            upto = CommonCode.setUpto(kana_list);
-
-            order = new int[upto];
-
-            CommonCode.orderRandom(upto, order);
+            Collections.shuffle(order);
 
             setButtons();
 
@@ -69,19 +69,19 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
     public void onClickButton4(View view) { everyButton(3); }
 
     public void onClickGameText(View view) {
-        wrongKana(order[count]);
+        wrongKana(order.get(count));
         count++;
         setButtons();
     }
 
     public void everyButton(int value) {
 
-        if (order[count] == buttonValues[value]) {
+        if (order.get(count) == buttonValues.get(value)) {
             count++;
             setButtons();
         } else {
             incorrect++;
-            wrongKana(order[count]);
+            wrongKana(order.get(count));
         }
     }
 
@@ -100,54 +100,38 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
 
     private void setButtons() {
 
-        if (count >= upto) {
+        if (count >= order.size()) {
             Toast.makeText(getApplicationContext(), incorrect + " incorrect", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
 
-        int[] used_values = new int[4];
-        int filled = CommonCode.randomInt(4, -1);
-        used_values[0] = order[count];
-        buttonValues[filled] = used_values[0];
-        int uvct = 1;
-        int skip = -1;
-        switch(order[count]){
-            case 52:
-                skip = 57;
-                break;
-            case 57:
-                skip = 52;
-                break;
-            default:
-                break;
+        buttonValues.clear();
+        buttonValues.addAll(order);
+        buttonValues.remove((Integer) order.get(count));
+        buttonValues.remove((Integer) 52);  // じ and ぢ are both ji
+        buttonValues.remove((Integer) 57);  // ず and づ are both zu
+        Collections.shuffle(buttonValues);
+        // ensure we have at least 4 values
+        while (buttonValues.size() < 4) {
+            buttonValues.add(order.get(random.nextInt(order.size())));
         }
-
-        for (int i = 0; i < 4; i++) {
-            if (i == filled) continue;
-            int val = CommonCode.randomInt(upto, skip);
-            for (int j = 0; j < uvct; j++) {
-                while (val == used_values[j]) {
-                    val = CommonCode.randomInt(upto, skip);
-                    j = 0;
-                }
-            }
-            used_values[uvct++] = val;
-            buttonValues[i] = val;
-        }
+        buttonValues.subList(3, buttonValues.size()).clear();
+        buttonValues.add(order.get(count));
+        Collections.shuffle(buttonValues);
 
         if(random.nextBoolean()) {
-            gameText.setText(japanese[order[count]]);
-            button1.setText(meaning[buttonValues[0]]);
-            button2.setText(meaning[buttonValues[1]]);
-            button3.setText(meaning[buttonValues[2]]);
-            button4.setText(meaning[buttonValues[3]]);
+            gameText.setText(japanese[order.get(count)]);
+            button1.setText(meaning[buttonValues.get(0)]);
+            button2.setText(meaning[buttonValues.get(1)]);
+            button3.setText(meaning[buttonValues.get(2)]);
+            button4.setText(meaning[buttonValues.get(3)]);
         }else{
-            gameText.setText(meaning[order[count]]);
-            button1.setText(japanese[buttonValues[0]]);
-            button2.setText(japanese[buttonValues[1]]);
-            button3.setText(japanese[buttonValues[2]]);
-            button4.setText(japanese[buttonValues[3]]);
+            gameText.setText(meaning[order.get(count)]);
+            button1.setText(japanese[buttonValues.get(0)]);
+            button2.setText(japanese[buttonValues.get(1)]);
+            button3.setText(japanese[buttonValues.get(2)]);
+            button4.setText(japanese[buttonValues.get(3)]);
         }
     }
 }

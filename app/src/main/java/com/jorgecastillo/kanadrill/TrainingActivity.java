@@ -7,13 +7,16 @@ import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public abstract class TrainingActivity extends EveryActivity {
 
   protected TextView kanaText, romanjiText;
 
   protected int count = -1;
-  protected int upto;
-  protected int[] order;
+  protected List<Integer> order;
 
   private KanaAudioPlayer kanaAudioPlayer = null;
   private SharedPreferences myPreferences;
@@ -40,19 +43,14 @@ public abstract class TrainingActivity extends EveryActivity {
     myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
     if (myPreferences.getBoolean("setup_true", false)) {
+      Collection<String> kanaGroups = myPreferences.getStringSet("kana_groups", Collections.<String>emptySet());
 
-      int kana_list =
-          Integer.parseInt(myPreferences.getString("kana_list", "1"));
-
-      upto = CommonCode.setUpto(kana_list);
-
-      order = new int[upto];
+      order = CommonCode.getKanas(kanaGroups);
 
       if (1 == Integer.parseInt(myPreferences.getString("order_list", "1"))) {
-
-        CommonCode.orderRandom(upto, order);
+        Collections.shuffle(order);
       } else {
-        CommonCode.orderLinear(upto, order);
+        Collections.sort(order);
       }
 
       setButtons();
@@ -71,13 +69,13 @@ public abstract class TrainingActivity extends EveryActivity {
   public void setButtons() {
 
     count++;
-    if (count >= upto) {
+    if (count >= order.size()) {
       finish();
       return;
     }
-    kanaText.setText(japanese[order[count]]);
-    romanjiText.setText(meaning[order[count]]);
-    kanaAudioPlayer.play(this,sounds[order[count]]);
+    kanaText.setText(japanese[order.get(count)]);
+    romanjiText.setText(meaning[order.get(count)]);
+    kanaAudioPlayer.play(this, sounds[order.get(count)]);
   }
 
   public void setButtonsBack() {

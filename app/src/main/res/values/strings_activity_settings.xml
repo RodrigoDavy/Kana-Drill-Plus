@@ -10,20 +10,22 @@
     <string name="katakana_title">Katakana too</string>
     <string name="katakana_summary">After hiragana show katakana</string>
 
+    <string-array name="empty_array" />
+
     <string name="kana_title">Included Characters</string>
     <string-array name="kana_options">
-        <item>First 5 (a to o)</item>
-        <item>First 10 (a to ko)</item>
-        <item>First 15 (a to so)</item>
-        <item>First 20 (a to to)</item>
-        <item>First 25 (a to no)</item>
-        <item>First 30 (a to ho)</item>
-        <item>First 35 (a to mo)</item>
-        <item>First 38 (a to yo)</item>
-        <item>First 46 (a to n)</item>
-        <item>Plus (ga to po)</item>
-        <item>Plus (kya to ryo)</item>
-        <item>Plus (gya to je)</item>
+        <item>a - o</item>
+        <item>ka - ko</item>
+        <item>sa - so</item>
+        <item>ta - to</item>
+        <item>na - no</item>
+        <item>ha - ho</item>
+        <item>ma - mo</item>
+        <item>ya - yo</item>
+        <item>ra - ro, wa, wo, n</item>
+        <item>ga - go, za - zo, da - do, ba - bo, pa - po</item>
+        <item>kya - ryo</item>
+        <item>gya - je</item>
     </string-array>
     <string-array name="kana_values" translatable="false">
         <item>1</item>
