@@ -9,14 +9,12 @@
         android:positiveButtonText="@null"
         android:title="@string/autoforward_title"/>
 
-    <ListPreference
-        android:defaultValue="1"
+    <MultiSelectListPreference
+        android:defaultValue="@array/empty_array"
         android:entries="@array/kana_options"
         android:entryValues="@array/kana_values"
-        android:key="kana_list"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/kana_title"/>
+        android:key="kana_groups"
+        android:title="@string/kana_title" />
 
     <ListPreference
         android:defaultValue="1"
