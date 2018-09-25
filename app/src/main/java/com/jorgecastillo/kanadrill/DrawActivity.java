@@ -135,7 +135,7 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
     private void setButtons() {
 
         if (count >= order.size()) {
-            Toast.makeText(getApplicationContext(), incorrect + " incorrect", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), revealedCount + " revealed", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
