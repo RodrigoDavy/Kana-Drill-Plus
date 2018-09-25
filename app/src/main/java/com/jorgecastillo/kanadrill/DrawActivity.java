@@ -23,7 +23,8 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
 
     protected int count;
     protected int upto;
-    protected int incorrect;
+    protected int revealedCount;
+    protected boolean revealed;
 
     protected List<Integer> order;
     protected Resources myResources;
@@ -94,6 +95,7 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
         if (gameText.getText().equals(meaning[order.get(count)])) {
             gameText.setText(japanese[order.get(count)]);
             button2.setText(R.string.hide);
+            revealed = true;
         } else {
             gameText.setText(meaning[order.get(count)]);
             button2.setText(R.string.reveal);
@@ -112,6 +114,10 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
     @Override
     public void onDismiss(final DialogInterface dialog) {
         count++;
+        if (revealed) {
+            ++revealedCount;
+            revealed = false;
+        }
         setButtons();
         simpleDrawingView.erase();
         button2.setText(R.string.reveal);
