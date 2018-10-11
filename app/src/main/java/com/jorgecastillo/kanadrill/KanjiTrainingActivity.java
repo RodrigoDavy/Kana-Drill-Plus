@@ -31,7 +31,7 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
   private TextView kanjiText, kanaText, englishText;
 
   private int count;
-  private int upto = 2136;
+  private static final int UPTO = 2136;
   private int[] order;
 
   private Resources myResources;
@@ -40,7 +40,7 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
   private String[] english;
   private String[] kana;
 
-  private String kanji_bookmark = "kanji_bookmar";
+  private static final String KANJI_BOOKMARK = "kanji_bookmar";
   private boolean autoforward = false;
 
   @Override
@@ -59,14 +59,14 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
 
     order = new int[2136];
     try {
-      FileInputStream input = openFileInput(kanji_bookmark);
+      FileInputStream input = openFileInput(KANJI_BOOKMARK);
       String count_bookmark = new Scanner(input).useDelimiter("\\Z").next();
       input.close();
       count = Integer.parseInt(count_bookmark);
     } catch (FileNotFoundException fnfe) {} catch (Exception e) {
       e.printStackTrace();
     }
-    CommonCode.orderLinear(upto, order);
+    CommonCode.orderLinear(UPTO, order);
     kanjiText.setText(kanji[order[count]]);
     englishText.setText(english[order[count]]);
     kanaText.setText(kana[order[count]]);
@@ -85,7 +85,7 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
     if (count == 829) {
       count = 830;
     }
-    if (count >= upto) {
+    if (count >= UPTO) {
       finish();
       return;
     }
@@ -135,7 +135,7 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
     Intent intent;
     switch (id) {
       case R.id.action_bookmark:
-        String filename = kanji_bookmark;
+        String filename = KANJI_BOOKMARK;
         String count_bookmark = "" + count;
         FileOutputStream outputStream;
         Context mContext = getApplicationContext();
@@ -167,7 +167,7 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
                     if (count == 829) {
                       count = 830;
                     }
-                    if (count == (upto - 1)) {
+                    if (count == (UPTO - 1)) {
                       autoforward = false;
                     }
                     setButtons();

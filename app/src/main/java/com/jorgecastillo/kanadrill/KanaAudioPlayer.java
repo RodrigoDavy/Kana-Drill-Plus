@@ -23,7 +23,7 @@ public class KanaAudioPlayer {
     };
 
     public KanaAudioPlayer(Activity activity) {
-        audioManager = (AudioManager) activity.getSystemService(activity.AUDIO_SERVICE);
+        audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
     }
 
     public void releaseMediaPlayer() {
