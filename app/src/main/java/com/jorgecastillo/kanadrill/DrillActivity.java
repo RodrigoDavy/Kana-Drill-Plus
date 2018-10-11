@@ -50,6 +50,8 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
             Collection<String> kanaGroups = myPreferences.getStringSet("kana_groups", Collections.<String>emptySet());
 
             order = CommonCode.getKanas(kanaGroups);
+            order.remove((Integer) 52);  // じ and ぢ are both ji
+            order.remove((Integer) 57);  // ず and づ are both zu
 
             Collections.shuffle(order);
 
@@ -109,8 +111,6 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
         buttonValues.clear();
         buttonValues.addAll(order);
         buttonValues.remove((Integer) order.get(count));
-        buttonValues.remove((Integer) 52);  // じ and ぢ are both ji
-        buttonValues.remove((Integer) 57);  // ず and づ are both zu
         Collections.shuffle(buttonValues);
         // ensure we have at least 4 values
         while (buttonValues.size() < 4) {
