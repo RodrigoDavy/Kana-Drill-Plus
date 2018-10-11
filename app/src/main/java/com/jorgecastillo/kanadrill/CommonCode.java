@@ -11,10 +11,13 @@ import java.util.Collection;
 import java.util.List;
 
 public class CommonCode {
+  private CommonCode() {
+    throw new AssertionError();
+  }
 
   public static int theme_list;
 
-  public static void orderLinear(int upto, int order[]) {
+  public static void orderLinear(int upto, int[] order) {
 
     for (int i = 0; i < upto; i++) {
       order[i] = i;
@@ -107,7 +110,7 @@ public class CommonCode {
       while ((c = inputStream.read()) != -1) {
         writer.append((char) c);
       }
-      String ints[] = writer.toString().split("\n");
+      String[] ints = writer.toString().split("\n");
       for (String s : ints) {
         array[i++] = Integer.parseInt(s);
       }
