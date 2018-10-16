@@ -19,7 +19,6 @@ public abstract class TrainingActivity extends EveryActivity {
   protected List<Integer> order;
 
   private KanaAudioPlayer kanaAudioPlayer = null;
-  private SharedPreferences myPreferences;
   protected Resources myResources;
 
   protected String[] meaning;
@@ -40,7 +39,7 @@ public abstract class TrainingActivity extends EveryActivity {
     myResources = getResources();
     setArrays();
 
-    myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
     if (myPreferences.getBoolean("setup_true", false)) {
       Collection<String> kanaGroups = myPreferences.getStringSet("kana_groups", Collections.<String>emptySet());

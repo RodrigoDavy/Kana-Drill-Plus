@@ -90,7 +90,7 @@ public abstract class DrawActivity extends EveryActivity implements DialogInterf
 
     //Switch between romaji and kana
     public void onClickButton2(View view) {
-        if (gameText.getText().equals(meaning[order.get(count)])) {
+        if (meaning[order.get(count)].contentEquals(gameText.getText())) {
             gameText.setText(japanese[order.get(count)]);
             button2.setText(R.string.hide);
             revealed = true;
