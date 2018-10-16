@@ -1,6 +1,5 @@
 package com.jorgecastillo.kanadrill;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 public class HiraganaTableActivity extends TableActivity {
@@ -13,13 +12,4 @@ public class HiraganaTableActivity extends TableActivity {
         meaning = myResources.getStringArray(R.array.romanji);
         japanese = myResources.getStringArray(R.array.hiragana);
     }
-
-    @Override
-    public void onRestart(){
-        super.onRestart();
-        finish();
-        Intent intent = new Intent(this, HiraganaTableActivity.class);
-        startActivity(intent);
-    }
-
 }

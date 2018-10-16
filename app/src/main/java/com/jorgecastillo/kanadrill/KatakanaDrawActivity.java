@@ -1,6 +1,5 @@
 package com.jorgecastillo.kanadrill;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 public class KatakanaDrawActivity extends DrawActivity {
@@ -24,13 +23,4 @@ public class KatakanaDrawActivity extends DrawActivity {
                 R.raw.ra,R.raw.ri,R.raw.ru,R.raw.re,R.raw.ro,
                 R.raw.wa,R.raw.o,R.raw.n};
     }
-
-    @Override
-    public void onRestart(){
-        super.onRestart();
-        finish();
-        Intent intent = new Intent(this, KatakanaDrawActivity.class);
-        startActivity(intent);
-    }
-
 }
