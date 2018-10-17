@@ -1,6 +1,5 @@
 package com.jorgecastillo.kanadrill;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 public class KatakanaDrillActivity extends DrillActivity {
@@ -13,13 +12,4 @@ public class KatakanaDrillActivity extends DrillActivity {
     meaning = myResources.getStringArray(R.array.romanji);
     japanese = myResources.getStringArray(R.array.katakana);
   }
-
-  @Override
-  public void onRestart(){
-    super.onRestart();
-    finish();
-    Intent intent = new Intent(this, KatakanaDrillActivity.class);
-    startActivity(intent);
-  }
-
 }

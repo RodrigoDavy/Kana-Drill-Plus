@@ -188,12 +188,4 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
     }
     return super.onOptionsItemSelected(item);
   }
-
-  @Override
-  public void onRestart(){
-    super.onRestart();
-    finish();
-    Intent intent = new Intent(this, KanjiTrainingActivity.class);
-    startActivity(intent);
-  }
 }

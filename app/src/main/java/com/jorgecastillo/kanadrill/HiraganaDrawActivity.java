@@ -1,6 +1,5 @@
 package com.jorgecastillo.kanadrill;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 public class HiraganaDrawActivity extends DrawActivity {
@@ -23,14 +22,6 @@ public class HiraganaDrawActivity extends DrawActivity {
                 R.raw.ya,R.raw.yu,R.raw.yo,
                 R.raw.ra,R.raw.ri,R.raw.ru,R.raw.re,R.raw.ro,
                 R.raw.wa,R.raw.o,R.raw.n};
-    }
-
-    @Override
-    public void onRestart(){
-        super.onRestart();
-        finish();
-        Intent intent = new Intent(this, HiraganaDrawActivity.class);
-        startActivity(intent);
     }
 }
 
