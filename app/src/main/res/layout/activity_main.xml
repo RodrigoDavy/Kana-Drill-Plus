@@ -97,6 +97,14 @@
 
     <Button
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/buttonHiraganaDrill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/vocabulary_button"
+        android:onClick="onClickButtonVocabulary"/>
+
+    <Button
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:id="@+id/buttonKanjiTraining"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
