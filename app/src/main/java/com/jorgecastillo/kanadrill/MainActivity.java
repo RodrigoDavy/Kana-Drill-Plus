@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 public class MainActivity extends EveryActivity {
 
-    private SharedPreferences myPreferences;
     private Context myContext;
     private String textToast;
 
@@ -20,7 +19,7 @@ public class MainActivity extends EveryActivity {
         setContentView(R.layout.activity_main);
 
         myContext = getApplicationContext();
-        myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         if (!myPreferences.getBoolean("setup_true", false)) {
 

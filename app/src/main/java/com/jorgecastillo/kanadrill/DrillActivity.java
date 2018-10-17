@@ -78,7 +78,7 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
 
     public void everyButton(int value) {
 
-        if (order.get(count) == buttonValues.get(value)) {
+        if (order.get(count).equals(buttonValues.get(value))) {
             count++;
             setButtons();
         } else {
