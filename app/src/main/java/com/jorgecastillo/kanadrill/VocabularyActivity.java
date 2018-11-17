@@ -51,9 +51,36 @@ public class VocabularyActivity extends EveryActivity implements DialogInterface
 
         List<String> japaneses = new ArrayList<>();
         List<String> meanings = new ArrayList<>();
+
+        Collection<String> vocabGroups = myPreferences.getStringSet("vocab_groups", Collections.<String>emptySet());
+        for (String fileName : vocabGroups) {
+            try {
+                addVocabularyFile(fileName, japaneses, meanings);
+            } catch (IOException ioe) {
+                throw new RuntimeException(ioe);
+            }
+        }
+
+        meaning = meanings.toArray(new String[meanings.size()]);
+        japanese = japaneses.toArray(new String[japaneses.size()]);
+
+        if (myPreferences.getBoolean("setup_true", false)) {
+            order = new ArrayList<>();
+            for (int i = 0; i < japanese.length; ++i) {
+                order.add(i);
+            }
+
+            Collections.shuffle(order);
+
+            setButtons();
+
+        }
+    }
+
+    private void addVocabularyFile(String fileName, Collection<String> japaneses, Collection<String> meanings) throws IOException {
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new InputStreamReader(getAssets().open("words.csv"), StandardCharsets.UTF_8));
+            reader = new BufferedReader(new InputStreamReader(getAssets().open(fileName), StandardCharsets.UTF_8));
             while (true) {
                 String line = reader.readLine();
                 if (line == null) {
@@ -69,8 +96,6 @@ public class VocabularyActivity extends EveryActivity implements DialogInterface
                 japaneses.add(parts[0]);
                 meanings.add(parts[1].trim());
             }
-        } catch (IOException ioe) {
-            throw new RuntimeException(ioe);
         } finally {
             if (reader != null) {
                 try {
@@ -79,22 +104,6 @@ public class VocabularyActivity extends EveryActivity implements DialogInterface
                     // ignore
                 }
             }
-        }
-        meaning = meanings.toArray(new String[meanings.size()]);
-        japanese = japaneses.toArray(new String[japaneses.size()]);
-
-        if (myPreferences.getBoolean("setup_true", false)) {
-            Collection<String> kanaGroups = myPreferences.getStringSet("kana_groups", Collections.<String>emptySet());
-
-            order = new ArrayList<>();
-            for (int i = 0; i < japanese.length; ++i) {
-                order.add(i);
-            }
-
-            Collections.shuffle(order);
-
-            setButtons();
-
         }
     }
 

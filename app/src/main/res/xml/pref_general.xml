@@ -16,6 +16,13 @@
         android:key="kana_groups"
         android:title="@string/kana_title" />
 
+    <MultiSelectListPreference
+        android:defaultValue="@array/empty_array"
+        android:entries="@array/vocab_options"
+        android:entryValues="@array/vocab_values"
+        android:key="vocab_groups"
+        android:title="@string/vocab_title" />
+
     <ListPreference
         android:defaultValue="1"
         android:entries="@array/order_options"
