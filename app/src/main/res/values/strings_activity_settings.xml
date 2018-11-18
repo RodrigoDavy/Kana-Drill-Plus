@@ -42,6 +42,26 @@
         <item>12</item>
     </string-array>
 
+    <string name="vocab_title">Vocabulary</string>
+    <string-array name="vocab_options">
+        <item>Chapter 1</item>
+        <item>Chapter 2</item>
+        <item>Chapter 3</item>
+        <item>Chapter 4</item>
+        <item>Chapter 5</item>
+        <item>Chapter 6</item>
+        <item>Chapter 7</item>
+    </string-array>
+    <string-array name="vocab_values" translatable="false">
+        <item>chapter1.csv</item>
+        <item>chapter2.csv</item>
+        <item>chapter3.csv</item>
+        <item>chapter4.csv</item>
+        <item>chapter5.csv</item>
+        <item>chapter6.csv</item>
+        <item>chapter7.csv</item>
+    </string-array>
+
     <string name="order_title">Display Order</string>
     <string-array name="order_options">
         <item>Randomly</item>
