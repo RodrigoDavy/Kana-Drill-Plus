@@ -9,10 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -55,7 +52,7 @@ public class VocabularyActivity extends EveryActivity implements DialogInterface
         Collection<String> vocabGroups = myPreferences.getStringSet("vocab_groups", Collections.<String>emptySet());
         for (String fileName : vocabGroups) {
             try {
-                addVocabularyFile(fileName, japaneses, meanings);
+                CommonCode.addVocabularyFile(myResources, fileName, japaneses, meanings);
             } catch (IOException ioe) {
                 throw new RuntimeException(ioe);
             }
@@ -74,36 +71,6 @@ public class VocabularyActivity extends EveryActivity implements DialogInterface
 
             setButtons();
 
-        }
-    }
-
-    private void addVocabularyFile(String fileName, Collection<String> japaneses, Collection<String> meanings) throws IOException {
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new InputStreamReader(getAssets().open(fileName), StandardCharsets.UTF_8));
-            while (true) {
-                String line = reader.readLine();
-                if (line == null) {
-                    break;
-                } else if (line.isEmpty()) {
-                    continue;
-                }
-                String[] parts = line.split(",");
-                if (parts.length != 2) {
-                    Log.i("KanaDrill", "malformed CSV: " + line);
-                    continue;
-                }
-                japaneses.add(parts[0]);
-                meanings.add(parts[1].trim());
-            }
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException ioe) {
-                    // ignore
-                }
-            }
         }
     }
 

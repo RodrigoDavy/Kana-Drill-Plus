@@ -48,6 +48,11 @@ public class MainActivity extends EveryActivity {
         startActivity(intent);
     }
 
+    public void onClickButtonVocabularyTable(View view) {
+        Intent intent = new Intent(this, VocabularyTableActivity.class);
+        startActivity(intent);
+    }
+
     public void onClickButtonKatakanaDrill(View view) {
 
         Intent intent = new Intent(this, KatakanaDrillActivity.class);
