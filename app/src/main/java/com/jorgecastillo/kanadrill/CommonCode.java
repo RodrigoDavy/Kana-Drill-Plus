@@ -1,11 +1,17 @@
 package com.jorgecastillo.kanadrill;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -122,4 +128,33 @@ public class CommonCode {
     return array;
   }
 
+  public static void addVocabularyFile(Resources resources, String fileName, Collection<String> japaneses, Collection<String> meanings) throws IOException {
+      BufferedReader reader = null;
+      try {
+          reader = new BufferedReader(new InputStreamReader(resources.getAssets().open(fileName), StandardCharsets.UTF_8));
+          while (true) {
+              String line = reader.readLine();
+              if (line == null) {
+                  break;
+              } else if (line.isEmpty()) {
+                  continue;
+              }
+              String[] parts = line.split(",");
+              if (parts.length != 2) {
+                  Log.i("KanaDrill", "malformed CSV: " + line);
+                  continue;
+              }
+              japaneses.add(parts[0]);
+              meanings.add(parts[1].trim());
+          }
+      } finally {
+          if (reader != null) {
+              try {
+                  reader.close();
+              } catch (IOException ioe) {
+                  // ignore
+              }
+          }
+      }
+  }
 }

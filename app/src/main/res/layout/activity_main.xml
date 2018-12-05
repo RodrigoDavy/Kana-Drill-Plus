@@ -95,13 +95,33 @@
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:id="@+id/buttonHiraganaDrill"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/vocabulary_button"
-        android:onClick="onClickButtonVocabulary"/>
+        android:text="@string/vocabulary_text"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/drill_button"
+            android:onClick="onClickButtonVocabulary"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/table_button"
+            android:onClick="onClickButtonVocabularyTable"/>
+
+    </LinearLayout>
 
     <Button
         android:layout_marginTop="@dimen/activity_vertical_margin"
