@@ -19,7 +19,7 @@ import java.util.Random;
 public class VocabularyActivity extends EveryActivity implements DialogInterface.OnDismissListener{
 
     protected TextView gameText;
-    protected Button button1, button2, button3, button4;
+    protected final List<Button> buttons = new ArrayList<Button>();
 
     protected int count;
     protected int incorrect;
@@ -39,10 +39,10 @@ public class VocabularyActivity extends EveryActivity implements DialogInterface
         setContentView(R.layout.activity_game);
 
         gameText = (TextView) findViewById(R.id.gameText);
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
+        buttons.add((Button) findViewById(R.id.button1));
+        buttons.add((Button) findViewById(R.id.button2));
+        buttons.add((Button) findViewById(R.id.button3));
+        buttons.add((Button) findViewById(R.id.button4));
 
         myResources = getResources();
 
@@ -79,13 +79,10 @@ public class VocabularyActivity extends EveryActivity implements DialogInterface
         japanese = myResources.getStringArray(R.array.hiragana);
     }
 
-    public void onClickButton1(View view) { everyButton(0); }
-
-    public void onClickButton2(View view) { everyButton(1); }
-
-    public void onClickButton3(View view) { everyButton(2); }
-
-    public void onClickButton4(View view) { everyButton(3); }
+    public void onClickButton(View view) {
+        int index = Integer.parseInt(view.getTag().toString());
+        everyButton(index);
+    }
 
     public void onClickGameText(View view) {
         wrongKana(order.get(count));
@@ -129,26 +126,23 @@ public class VocabularyActivity extends EveryActivity implements DialogInterface
         buttonValues.addAll(order);
         buttonValues.remove((Integer) order.get(count));
         Collections.shuffle(buttonValues);
-        // ensure we have at least 4 values
-        while (buttonValues.size() < 4) {
+        while (buttonValues.size() < buttons.size() - 1) {
             buttonValues.add(order.get(random.nextInt(order.size())));
         }
-        buttonValues.subList(3, buttonValues.size()).clear();
+        buttonValues.subList(buttons.size() - 1, buttonValues.size()).clear();
         buttonValues.add(order.get(count));
         Collections.shuffle(buttonValues);
 
         if(random.nextBoolean()) {
             gameText.setText(japanese[order.get(count)]);
-            button1.setText(meaning[buttonValues.get(0)]);
-            button2.setText(meaning[buttonValues.get(1)]);
-            button3.setText(meaning[buttonValues.get(2)]);
-            button4.setText(meaning[buttonValues.get(3)]);
+            for (int i = 0; i < buttons.size(); ++i) {
+                buttons.get(i).setText(meaning[buttonValues.get(i)]);
+            }
         }else{
             gameText.setText(meaning[order.get(count)]);
-            button1.setText(japanese[buttonValues.get(0)]);
-            button2.setText(japanese[buttonValues.get(1)]);
-            button3.setText(japanese[buttonValues.get(2)]);
-            button4.setText(japanese[buttonValues.get(3)]);
+            for (int i = 0; i < buttons.size(); ++i) {
+                buttons.get(i).setText(japanese[buttonValues.get(i)]);
+            }
         }
     }
 }
