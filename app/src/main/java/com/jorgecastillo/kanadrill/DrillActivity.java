@@ -103,7 +103,7 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
     private void setButtons() {
 
         if (count >= order.size()) {
-            Toast.makeText(getApplicationContext(), incorrect + " incorrect", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), incorrect + " out of " + order.size() + " incorrect", Toast.LENGTH_LONG).show();
             finish();
             return;
         }

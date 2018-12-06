@@ -120,7 +120,7 @@ public class VocabularyActivity extends EveryActivity implements DialogInterface
     private void setButtons() {
 
         if (count >= order.size()) {
-            Toast.makeText(getApplicationContext(), incorrect + " incorrect", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), incorrect + " out of " + order.size() + " incorrect", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
