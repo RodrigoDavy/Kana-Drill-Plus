@@ -70,12 +70,6 @@ public abstract class DrillActivity extends EveryActivity implements DialogInter
 
     public void onClickButton4(View view) { everyButton(3); }
 
-    public void onClickGameText(View view) {
-        wrongKana(order.get(count));
-        count++;
-        setButtons();
-    }
-
     public void everyButton(int value) {
 
         if (order.get(count).equals(buttonValues.get(value))) {
