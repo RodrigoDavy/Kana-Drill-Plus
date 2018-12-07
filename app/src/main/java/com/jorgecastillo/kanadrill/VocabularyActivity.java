@@ -84,12 +84,6 @@ public class VocabularyActivity extends EveryActivity implements DialogInterface
         everyButton(index);
     }
 
-    public void onClickGameText(View view) {
-        wrongKana(order.get(count));
-        count++;
-        setButtons();
-    }
-
     public void everyButton(int value) {
 
         if (order.get(count).equals(buttonValues.get(value))) {
