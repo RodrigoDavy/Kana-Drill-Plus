@@ -26,7 +26,8 @@
             android:id="@+id/button1"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:onClick="onClickButton1"
+            android:onClick="onClickButton"
+            android:tag="0"
             android:text=""
             android:textSize="36sp"
             tools:text="い"/>
@@ -35,7 +36,8 @@
             android:id="@+id/button2"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:onClick="onClickButton2"
+            android:onClick="onClickButton"
+            android:tag="1"
             android:text=""
             android:textSize="36sp"
             tools:text="い"/>
@@ -44,7 +46,8 @@
             android:id="@+id/button3"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:onClick="onClickButton3"
+            android:onClick="onClickButton"
+            android:tag="2"
             android:text=""
             android:textSize="36sp"
             tools:text="い"/>
@@ -53,7 +56,8 @@
             android:id="@+id/button4"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:onClick="onClickButton4"
+            android:onClick="onClickButton"
+            android:tag="3"
             android:text=""
             android:textSize="36sp"
             tools:text="い"/>
