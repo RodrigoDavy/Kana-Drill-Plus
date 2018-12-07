@@ -131,7 +131,7 @@ public class CommonCode {
   public static void addVocabularyFile(Resources resources, String fileName, Collection<String> japaneses, Collection<String> meanings) throws IOException {
       BufferedReader reader = null;
       try {
-          reader = new BufferedReader(new InputStreamReader(resources.getAssets().open(fileName), StandardCharsets.UTF_8));
+          reader = new BufferedReader(new InputStreamReader(resources.getAssets().open(fileName), "UTF-8"));
           while (true) {
               String line = reader.readLine();
               if (line == null) {
