@@ -1,11 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
+      xmlns:compat="http://schemas.android.com/apk/res-auto"
       tools:context="com.jorgecastillo.kanadrill.MainActivity">
 
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        compat:showAsAction="never"
         android:title="@string/action_settings"/>
 
 </menu>
