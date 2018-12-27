@@ -51,6 +51,9 @@
         <item>Chapter 5</item>
         <item>Chapter 6</item>
         <item>Chapter 7</item>
+        <item>Chapter 8</item>
+        <item>Chapter 9</item>
+        <item>Chapter 10</item>
     </string-array>
     <string-array name="vocab_values" translatable="false">
         <item>chapter1.csv</item>
@@ -60,6 +63,9 @@
         <item>chapter5.csv</item>
         <item>chapter6.csv</item>
         <item>chapter7.csv</item>
+        <item>chapter8.csv</item>
+        <item>chapter9.csv</item>
+        <item>chapter10.csv</item>
     </string-array>
 
     <string name="order_title">Display Order</string>
